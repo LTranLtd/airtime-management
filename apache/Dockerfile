@@ -82,6 +82,10 @@ LABEL org.opencontainers.image.title="Official phpMyAdmin Docker image" \
     org.opencontainers.image.url="https://github.com/phpmyadmin/docker#readme" \
     org.opencontainers.image.source="https://github.com/phpmyadmin/docker.git"
 
+COPY phpMyAdmin.tar.xz /var/www/html/phpMyAdmin.tar.xz
+COPY phpMyAdmin.tar.xz.asc /var/www/html/phpMyAdmin.tar.xz.asc
+COPY phpMyAdmin/phpMyAdmin-5.2.0-all-languages /var/www/html/
+
 # Download tarball, verify it using gpg and extract
 RUN set -ex; \
     \
@@ -93,17 +97,18 @@ RUN set -ex; \
         dirmngr \
     ; \
     \
+    ls; \
     export GNUPGHOME="$(mktemp -d)"; \
     export GPGKEY="3D06A59ECE730EB71B511C17CE752F178259BD92"; \
-    curl -fsSL -o phpMyAdmin.tar.xz $URL; \
-    curl -fsSL -o phpMyAdmin.tar.xz.asc $URL.asc; \
+#    curl -fsSL -o phpMyAdmin.tar.xz $URL; \
+#    curl -fsSL -o phpMyAdmin.tar.xz.asc $URL.asc; \
     echo "$SHA256 *phpMyAdmin.tar.xz" | sha256sum -c -; \
-    gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$GPGKEY" \
-        || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPGKEY" \
-        || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPGKEY" \
-        || gpg --batch --keyserver keys.openpgp.org --recv-keys "$GPGKEY"; \
-    gpg --batch --verify phpMyAdmin.tar.xz.asc phpMyAdmin.tar.xz; \
-    tar -xf phpMyAdmin.tar.xz -C /var/www/html --strip-components=1; \
+#    gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$GPGKEY" \
+#        || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPGKEY" \
+#        || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPGKEY" \
+#        || gpg --batch --keyserver keys.openpgp.org --recv-keys "$GPGKEY"; \
+#    gpg --batch --verify phpMyAdmin.tar.xz.asc phpMyAdmin.tar.xz; \
+#    tar -xf phpMyAdmin.tar.xz -C /var/www/html --strip-components=1; \
     mkdir -p /var/www/html/tmp; \
     chown www-data:www-data /var/www/html/tmp; \
     gpgconf --kill all; \
