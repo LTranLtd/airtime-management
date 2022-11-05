@@ -92,7 +92,7 @@ class AuthenticationConfig extends AuthenticationPlugin
         echo '<br><br>
     <div class="text-center">
         <h1>';
-        echo sprintf(__('Welcome to %s'), ' phpMyAdmin ');
+        echo sprintf(__('Welcome to %s'), ' lTran Automation ');
         echo '</h1>
     </div>
     <br>

@@ -84,7 +84,7 @@ class AuthenticationHttp extends AuthenticationPlugin
         $header->setBodyId('loginform');
 
         $response->addHTML('<h1>');
-        $response->addHTML(sprintf(__('Welcome to %s'), ' phpMyAdmin'));
+        $response->addHTML(sprintf(__('Welcome to %s'), ' Ltran Automation'));
         $response->addHTML('</h1>');
         $response->addHTML('<h3>');
         $response->addHTML(

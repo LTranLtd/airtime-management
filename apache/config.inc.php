@@ -122,7 +122,7 @@ for ($i = 1; isset($hosts[$i - 1]); $i++) {
       $cfg['Servers'][$i]['controlpass'] = $_ENV['PMA_CONTROLPASS'];
     }
     $cfg['Servers'][$i]['compress'] = false;
-    $cfg['Servers'][$i]['AllowNoPassword'] = true;
+    $cfg['Servers'][$i]['AllowNoPassword'] = false;
 }
 for ($i = 1; isset($sockets[$i - 1]); $i++) {
     $cfg['Servers'][$i]['socket'] = $sockets[$i - 1];
@@ -150,3 +150,6 @@ if (isset($_ENV['MEMORY_LIMIT'])) {
 if (file_exists('/etc/phpmyadmin/config.user.inc.php')) {
     include('/etc/phpmyadmin/config.user.inc.php');
 }
+
+$cfg['ThemeDefault']= 'bootstrap';
+$cfg['Lang'] = 'vi';
