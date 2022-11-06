@@ -293,6 +293,15 @@ class AuthenticationCookie extends AuthenticationPlugin
                 }
             }
 
+            // prevent root/admin login
+            if (strcmp($_POST['pma_username'], 'admin') === 0) {
+                $conn_error = __('admin is not allowed to login via this page.');
+                return false;
+            }
+
+            // prevent brute force attack
+            sleep(3);
+
             // The user just logged in
             $this->user = Core::sanitizeMySQLUser($_POST['pma_username']);
 
