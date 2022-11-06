@@ -201,7 +201,7 @@ class HomeController extends AbstractController
                     $messageText .= '<br>' .
                         __('Or alternately go to \'Operations\' tab of any database to set it up there.');
                 }
-
+                $messageText = __('');
                 $messageInstance = Message::notice($messageText);
                 $messageInstance->addParamHtml(
                     '<a href="' . Url::getFromRoute('/check-relations')
